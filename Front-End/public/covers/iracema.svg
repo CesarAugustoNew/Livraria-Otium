@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Capa de Iracema">
+<rect width="300" height="450" fill="#2d6a4f"/>
+<rect x="12" y="12" width="276" height="426" fill="none" stroke="#f7e8a4" stroke-width="1.5" opacity=".7"/>
+<g><path d="M30 80 q30 -22 60 0 t60 0 t60 0 t60 0" fill="none" stroke="#f7e8a4" stroke-width="3" opacity="0.95"/><path d="M30 106 q30 -22 60 0 t60 0 t60 0 t60 0" fill="none" stroke="#f7e8a4" stroke-width="3" opacity="0.77"/><path d="M30 132 q30 -22 60 0 t60 0 t60 0 t60 0" fill="none" stroke="#f7e8a4" stroke-width="3" opacity="0.59"/><path d="M30 158 q30 -22 60 0 t60 0 t60 0 t60 0" fill="none" stroke="#f7e8a4" stroke-width="3" opacity="0.4099999999999999"/></g>
+<text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="34" fill="#f7e8a4"><tspan x="150" y="300">Iracema</tspan></text>
+<line x1="110" y1="374" x2="190" y2="374" stroke="#f7e8a4" stroke-width="1.5" opacity=".7"/>
+<text x="150" y="398" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.5" fill="#f7e8a4">JOSÉ DE ALENCAR</text>
+<text x="150" y="428" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="4" fill="#f7e8a4" opacity=".7">OTIUM</text>
+</svg>

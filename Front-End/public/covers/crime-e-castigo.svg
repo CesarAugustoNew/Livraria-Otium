@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Capa de Crime e Castigo">
+<rect width="300" height="450" fill="#5a1e1e"/>
+<rect x="12" y="12" width="276" height="426" fill="none" stroke="#e8d5b5" stroke-width="1.5" opacity=".7"/>
+<g><rect x="50" y="110" width="22" height="90" fill="#e8d5b5" opacity=".85"/><rect x="84" y="70" width="22" height="130" fill="#e8d5b5" opacity=".85"/><rect x="118" y="140" width="22" height="60" fill="#e8d5b5" opacity=".85"/><rect x="152" y="50" width="22" height="150" fill="#e8d5b5" opacity=".85"/><rect x="186" y="100" width="22" height="100" fill="#e8d5b5" opacity=".85"/><rect x="220" y="80" width="22" height="120" fill="#e8d5b5" opacity=".85"/></g>
+<text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="34" fill="#e8d5b5"><tspan x="150" y="280">Crime e</tspan><tspan x="150" y="319">Castigo</tspan></text>
+<line x1="110" y1="374" x2="190" y2="374" stroke="#e8d5b5" stroke-width="1.5" opacity=".7"/>
+<text x="150" y="398" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.5" fill="#e8d5b5">FIÓDOR DOSTOIÉVSKI</text>
+<text x="150" y="428" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="4" fill="#e8d5b5" opacity=".7">OTIUM</text>
+</svg>

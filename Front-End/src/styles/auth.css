@@ -1,0 +1,41 @@
+.auth { display: flex; justify-content: center; }
+.auth-card {
+  width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--space-6);
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.auth-card__title { font-size: 1.4rem; text-align: center; margin-bottom: var(--space-2); }
+.auth-card__error {
+  background: #fbe9e7; color: var(--danger); border: 1px solid #f0c4bd;
+  border-radius: var(--radius); padding: var(--space-3); font-size: 0.9rem;
+}
+
+.field { display: flex; position: relative; }
+.field input {
+  width: 100%; min-height: var(--touch); padding: 0 var(--space-3); border: 1.5px solid var(--line);
+  border-radius: var(--radius); font: inherit; background: var(--paper); color: var(--ink);
+}
+.field input:focus { outline: none; border-color: var(--accent); }
+.field--password input { padding-right: 44px; }
+.field__toggle {
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border: 0; background: transparent; color: var(--muted); cursor: pointer;
+  display: grid; place-items: center; border-radius: 50%;
+}
+.field__toggle:hover { background: rgb(0 0 0 / 6%); }
+
+.auth-card__forgot { align-self: flex-end; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: -4px; }
+.auth-card__forgot:hover { text-decoration: underline; }
+
+.auth-card__register { text-align: center; font-size: 0.9rem; color: var(--muted); }
+.auth-card__register a { color: var(--accent); font-weight: 600; }
+.auth-card__register a:hover { text-decoration: underline; }
+
+.auth-card__divider { display: flex; align-items: center; gap: var(--space-3); color: var(--muted); font-size: 0.8rem; margin-block: var(--space-1); }
+.auth-card__divider::before, .auth-card__divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.btn--social {
+  background: var(--surface); color: var(--ink); border: 1.5px solid var(--line);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+}
+.btn--social:hover { background: var(--paper); }

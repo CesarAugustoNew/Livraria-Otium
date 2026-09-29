@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Capa de A Arte da Guerra">
+<rect width="300" height="450" fill="#8a2b1f"/>
+<rect x="12" y="12" width="276" height="426" fill="none" stroke="#f5e6c8" stroke-width="1.5" opacity=".7"/>
+<g><circle cx="120" cy="120" r="55" fill="none" stroke="#f5e6c8" stroke-width="3"/><circle cx="180" cy="120" r="55" fill="none" stroke="#f5e6c8" stroke-width="3"/><circle cx="150" cy="120" r="12" fill="#f5e6c8"/></g>
+<text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="34" fill="#f5e6c8"><tspan x="150" y="280">A Arte da</tspan><tspan x="150" y="319">Guerra</tspan></text>
+<line x1="110" y1="374" x2="190" y2="374" stroke="#f5e6c8" stroke-width="1.5" opacity=".7"/>
+<text x="150" y="398" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.5" fill="#f5e6c8">SUN TZU</text>
+<text x="150" y="428" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="4" fill="#f5e6c8" opacity=".7">OTIUM</text>
+</svg>
