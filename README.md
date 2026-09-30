@@ -2,6 +2,7 @@
 
 # Livraria Otium
 
+<<<<<<< HEAD
 E-commerce de livros completo — catálogo, carrinho, checkout e autenticação — construído em **Java** com **Spring Boot** no back-end e **React** com **TypeScript** no front-end.
 
 ![Java](https://img.shields.io/badge/Java-25-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
@@ -85,3 +86,6 @@ O login funciona com **JWT** (JSON Web Token): ao entrar com e-mail e senha, o u
 ## Capas dos livros
 
 As capas são ilustrações **SVG originais**, geradas por um script próprio (`Front-End/scripts/generate_covers.py`) e servidas como arquivos estáticos em `Front-End/public/covers/`. O livro guarda apenas a URL da capa (`coverUrl`) — diferente de guardar a imagem em base64 no banco — o que mantém o banco leve e permite trocar ou regerar as artes sem migração de dados.
+=======
+
+>>>>>>> d468f6a1cba8432e26cba71c18abd0bd9b760c01
