@@ -4,7 +4,10 @@ import { Layout } from './components/layout/Layout';
 import { AuthProvider } from './contexts/AuthContext';
 import { ShopProvider } from './contexts/ShopContext';
 import { ToastProvider } from './contexts/ToastContext';
+<<<<<<< HEAD
 import { BookDetail } from './pages/BookDetail';
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 import { Cart } from './pages/Cart';
 import { Catalog } from './pages/Catalog';
 import { Checkout } from './pages/Checkout';
@@ -23,7 +26,10 @@ export default function App() {
               <Route element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="livros" element={<Catalog />} />
+<<<<<<< HEAD
                 <Route path="livro/:id" element={<BookDetail />} />
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
                 <Route path="entrar" element={<Login />} />
                 <Route path="cadastro" element={<Register />} />
                 <Route path="favoritos" element={<NotFound soon />} />

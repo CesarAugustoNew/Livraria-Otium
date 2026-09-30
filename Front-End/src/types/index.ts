@@ -27,6 +27,7 @@ export interface BookSummary {
   collectionId?: string;
 }
 
+<<<<<<< HEAD
 export interface BookDetail {
   id: string;
   title: string;
@@ -54,6 +55,8 @@ export interface BookDetail {
   reviewCount: number;
 }
 
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 export interface Category {
   id: string;
   name: string;

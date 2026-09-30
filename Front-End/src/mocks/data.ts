@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { Author, Banner, BookCollection, BookDetail, BookSummary, Category } from '../types';
+=======
+import type { Author, Banner, BookCollection, BookSummary, Category } from '../types';
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 
 // Dados temporários: têm o mesmo formato da API, então basta desligar VITE_USE_MOCKS.
 
@@ -80,6 +84,7 @@ export const mockBooks: BookSummary[] = [
   book('poemas-escolhidos', 'Poemas Escolhidos', 'Fernando Pessoa', 'Poesia', 'Clássicos da Literatura Portuguesa', 37.9, null, { release: true, averageRating: 4.8, reviewCount: 75 }),
 ];
 
+<<<<<<< HEAD
 /** Textos usados só na página de detalhe (a listagem/catálogo não precisa deles). */
 const mockDescriptions: Record<string, string> = {
   'dom-casmurro': 'Bento Santiago revisita a juventude e a dúvida sobre Capitu: teria ela traído sua confiança com o melhor amigo? Um dos maiores romances da literatura brasileira, narrado por um narrador que talvez não mereça toda a nossa confiança.',
@@ -131,6 +136,8 @@ export const mockBookDetails: Record<string, BookDetail> = Object.fromEntries(
   mockBooks.map((b) => [b.id, toDetail(b)]),
 );
 
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 export const mockBanners: Banner[] = [
   { id: 'bn-1', title: 'Otium: tempo para ler', subtitle: 'Sua próxima leitura está a um clique', imageUrl: null, linkUrl: '/livros' },
   { id: 'bn-2', title: 'Lançamentos da semana', subtitle: 'Descubra o que acabou de chegar', imageUrl: null, linkUrl: '/livros?lancamentos=true' },

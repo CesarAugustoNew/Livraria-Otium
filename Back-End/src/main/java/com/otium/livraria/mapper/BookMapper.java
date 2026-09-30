@@ -6,7 +6,10 @@ import com.otium.livraria.dto.CategoryResponse;
 import com.otium.livraria.entity.Book;
 import com.otium.livraria.entity.Category;
 import com.otium.livraria.repository.RatingSummary;
+<<<<<<< HEAD
 import java.util.Arrays;
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +30,7 @@ public class BookMapper {
                 book.getCoverUrl(), book.getPrice(), book.getOriginalPrice(), book.getDiscountPercent(),
                 book.getStockQuantity(), book.isAvailable(), book.isRelease(),
                 book.getPages(), book.getPublisher(), book.getPublishedAt(),
+<<<<<<< HEAD
                 book.getLanguage(), book.getEdition(), book.getDimensions(), summaryLines(book),
                 toCategory(book.getCategory()), authorNames(book), average(rating), total(rating));
     }
@@ -39,6 +43,11 @@ public class BookMapper {
         return Arrays.stream(raw.split("\\R")).map(String::trim).filter(s -> !s.isEmpty()).toList();
     }
 
+=======
+                toCategory(book.getCategory()), authorNames(book), average(rating), total(rating));
+    }
+
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
     public CategoryResponse toCategory(Category c) {
         return new CategoryResponse(c.getId(), c.getName(), c.getSlug());
     }

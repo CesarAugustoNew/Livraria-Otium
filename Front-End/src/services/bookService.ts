@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { mockBookDetails, mockBooks } from '../mocks/data';
 import type { BookDetail, BookQuery, BookSummary, PageResponse } from '../types';
 import { ApiError, api, USE_MOCKS } from './api';
+=======
+import { mockBooks } from '../mocks/data';
+import type { BookQuery, BookSummary, PageResponse } from '../types';
+import { api, USE_MOCKS } from './api';
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 
 const delay = (ms = 350) => new Promise((r) => setTimeout(r, ms));
 
@@ -54,6 +60,7 @@ async function searchMock(q: BookQuery): Promise<PageResponse<BookSummary>> {
   };
 }
 
+<<<<<<< HEAD
 async function getMock(id: string): Promise<BookDetail> {
   await delay();
   const found = mockBookDetails[id];
@@ -61,13 +68,18 @@ async function getMock(id: string): Promise<BookDetail> {
   return found;
 }
 
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 export const bookService = {
   search(query: BookQuery = {}, signal?: AbortSignal): Promise<PageResponse<BookSummary>> {
     if (USE_MOCKS) return searchMock(query);
     return api<PageResponse<BookSummary>>('/books', { query: { ...query }, signal });
   },
+<<<<<<< HEAD
   get(id: string, signal?: AbortSignal): Promise<BookDetail> {
     if (USE_MOCKS) return getMock(id);
     return api<BookDetail>(`/books/${id}`, { signal });
   },
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 };

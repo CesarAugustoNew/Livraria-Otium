@@ -78,6 +78,7 @@ public class Book extends BaseEntity {
 
     private LocalDate publishedAt;
 
+<<<<<<< HEAD
     @ColumnDefault("'Português'")
     @Column(nullable = false, length = 40)
     private String language = "Português";
@@ -94,6 +95,8 @@ public class Book extends BaseEntity {
     @Column(columnDefinition = "text")
     private String summary;
 
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
     /** Marca o livro como "lançamento" para a vitrine da home. */
     @Column(name = "is_release", nullable = false)
     private boolean release;

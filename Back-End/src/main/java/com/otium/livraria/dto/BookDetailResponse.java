@@ -21,11 +21,14 @@ public record BookDetailResponse(
         Integer pages,
         String publisher,
         LocalDate publishedAt,
+<<<<<<< HEAD
         String language,
         int edition,
         String dimensions,
         /** Uma linha por item do sumário (o front divide por quebra de linha). */
         List<String> summary,
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
         CategoryResponse category,
         List<String> authors,
         double averageRating,

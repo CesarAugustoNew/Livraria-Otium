@@ -126,12 +126,18 @@ public class DevDataSeeder implements CommandLineRunner {
     }
 
     private class Seed {
+<<<<<<< HEAD
         private static final String DIMENSIONS = "13.7 x 21.0 x 1.3 cm";
 
         private final Map<String, Category> cat;
         private final Map<String, BookCollection> col;
         private final Map<String, Author> authorCache = new HashMap<>();
         private int referenceCounter = 1;
+=======
+        private final Map<String, Category> cat;
+        private final Map<String, BookCollection> col;
+        private final Map<String, Author> authorCache = new HashMap<>();
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 
         Seed(Map<String, Category> cat, Map<String, BookCollection> col) {
             this.cat = cat;
@@ -160,6 +166,7 @@ public class DevDataSeeder implements CommandLineRunner {
             book.setCategory(cat.get(category));
             book.setCollection(collection == null ? null : col.get(collection));
             book.setPublishedAt(LocalDate.of(year, 1, 1));
+<<<<<<< HEAD
             book.setPublisher("Otium Clássicos");
             book.setIsbn(String.format("OTM%05d", referenceCounter++));
             book.setPages(180 + Math.floorMod(title.hashCode(), 220));
@@ -178,5 +185,10 @@ public class DevDataSeeder implements CommandLineRunner {
                     "Capítulo 2 – Desenvolvimento",
                     "Considerações finais");
         }
+=======
+            book.addAuthor(author, 0);
+            books.save(book);
+        }
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
     }
 }

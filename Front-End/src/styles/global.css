@@ -68,7 +68,10 @@ img { max-width: 100%; display: block; }
 .btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
 .btn--outline:hover:not(:disabled) { background: var(--accent); color: #fff; }
 .btn--block { width: 100%; }
+<<<<<<< HEAD
 .btn--icon { gap: var(--space-2); }
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .icon-btn {

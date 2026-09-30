@@ -10,6 +10,7 @@ Livraria-Otium/
 └── docker-compose.yml   PostgreSQL para desenvolvimento
 ```
 
+<<<<<<< HEAD
 ## Como rodar
 
 ### 1. Banco
@@ -37,3 +38,5 @@ npm run dev
 Abre em http://localhost:5173. O Vite encaminha `/api` para `localhost:8080`.
 Por padrão usa dados de exemplo (`VITE_USE_MOCKS=true` em `.env.development`);
 mude para `false` para usar o backend.
+=======
+>>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
