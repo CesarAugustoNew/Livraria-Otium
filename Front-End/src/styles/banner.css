@@ -1,0 +1,43 @@
+.banner { position: relative; overflow: hidden; background: var(--ink); }
+.banner__track { display: flex; transition: transform 0.5s ease; }
+.banner__slide { flex: 0 0 100%; min-width: 0; }
+.banner__link { display: block; }
+.banner__slide img { width: 100%; height: 180px; object-fit: cover; }
+
+/* Fallback (sem imagem): 3 fundos alternados, texto sempre legível */
+.banner__fallback {
+  min-height: 180px; display: flex; flex-direction: column; justify-content: center; gap: var(--space-2);
+  padding: var(--space-6) 3.5rem; color: #fff;
+}
+.banner__fallback h2 { font-size: 1.5rem; }
+.banner__fallback p { opacity: 0.92; }
+.banner__slide--0 { background: linear-gradient(120deg, #7a2e22, #a4523f); }
+.banner__slide--1 { background: linear-gradient(120deg, #23415a, #3f6c8e); }
+.banner__slide--2 { background: linear-gradient(120deg, #3b4a2f, #6b7f4f); }
+
+.banner__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: var(--touch); height: var(--touch); border-radius: 50%; border: 0; cursor: pointer;
+  background: rgb(255 255 255 / 92%); color: var(--accent); display: grid; place-items: center;
+}
+.banner__nav--prev { left: var(--space-2); }
+.banner__nav--next { right: var(--space-2); }
+
+.banner__controls { position: absolute; bottom: var(--space-2); left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: var(--space-2); }
+.banner__pause { width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 85%); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.banner__dots { display: flex; gap: 2px; }
+/* botão com 24px de área de toque e bolinha visual menor via ::before */
+.banner__dot { width: 24px; height: 24px; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; }
+.banner__dot::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: rgb(255 255 255 / 60%); }
+.banner__dot.is-active::before { background: #fff; box-shadow: 0 0 0 2px rgb(0 0 0 / 25%); }
+
+@media (min-width: 768px) {
+  .banner__slide img, .banner__fallback { height: 280px; min-height: 280px; }
+  .banner__fallback h2 { font-size: 2.2rem; }
+}
+@media (min-width: 1024px) {
+  .banner__slide img, .banner__fallback { height: 380px; min-height: 380px; }
+  .banner__fallback { padding-inline: 8rem; }
+  .banner__fallback h2 { font-size: 2.8rem; }
+  .skeleton--banner { height: 380px; }
+}

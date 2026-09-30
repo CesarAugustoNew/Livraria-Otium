@@ -1,0 +1,16 @@
+# Sobe apenas o PostgreSQL para desenvolvimento local.
+services:
+  db:
+    image: postgres:17
+    container_name: otium-db
+    environment:
+      POSTGRES_DB: otium
+      POSTGRES_USER: otium
+      POSTGRES_PASSWORD: otium
+    ports:
+      - "5432:5432"
+    volumes:
+      - otium-db-data:/var/lib/postgresql/data
+
+volumes:
+  otium-db-data:

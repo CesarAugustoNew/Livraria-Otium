@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: livraria-api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/otium}
+    username: ${DB_USER:otium}
+    password: ${DB_PASSWORD:otium}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+
+app:
+  jwt:
+    # Em produção defina JWT_SECRET (mínimo 32 caracteres). O valor abaixo é só para desenvolvimento.
+    secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret-change-me}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:120}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  seed:
+    admin-email: ${ADMIN_EMAIL:admin@otium.com}
+    admin-password: ${ADMIN_PASSWORD:admin12345}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
