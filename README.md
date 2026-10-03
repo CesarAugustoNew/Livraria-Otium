@@ -83,9 +83,3 @@ O back-end segue o modelo em camadas mais comum para esse tipo de projeto:
 
 O login funciona com **JWT** (JSON Web Token): ao entrar com e-mail e senha, o usuário recebe um token que deve ser enviado nas próximas requisições, provando quem ele é sem precisar mandar a senha de novo. As rotas administrativas (escrita no catálogo) exigem que o token pertença a um usuário com papel **ADMIN**. Erros de autenticação e autorização seguem o mesmo formato padronizado das demais respostas de erro da API, sem vazar detalhe interno algum.
 
-## Capas dos livros
-
-As capas são ilustrações **SVG originais**, geradas por um script próprio (`Front-End/scripts/generate_covers.py`) e servidas como arquivos estáticos em `Front-End/public/covers/`. O livro guarda apenas a URL da capa (`coverUrl`) — diferente de guardar a imagem em base64 no banco — o que mantém o banco leve e permite trocar ou regerar as artes sem migração de dados.
-=======
-
->>>>>>> d468f6a1cba8432e26cba71c18abd0bd9b760c01
