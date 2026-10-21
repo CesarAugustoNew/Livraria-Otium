@@ -1,8 +1,5 @@
 import { useState } from 'react';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-=======
->>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 import { useShop } from '../../contexts/ShopContext';
 import type { BookSummary } from '../../types';
 import { formatPrice, installment } from '../../utils/format';
@@ -29,7 +26,6 @@ export function BookCard({ book }: { book: BookSummary }) {
           onToggle={() => toggleFavorite(book)}
           bookTitle={book.title}
         />
-<<<<<<< HEAD
         <Link to={`/livro/${book.id}`} className="book-card__media-link" tabIndex={-1} aria-hidden="true">
           {showCover ? (
             <img
@@ -51,25 +47,6 @@ export function BookCard({ book }: { book: BookSummary }) {
         <h3 className="book-card__title">
           <Link to={`/livro/${book.id}`}>{book.title}</Link>
         </h3>
-=======
-        {showCover ? (
-          <img
-            src={book.coverUrl!}
-            alt={`Capa de ${book.title}`}
-            loading="lazy"
-            onError={() => setCoverFailed(true)}
-          />
-        ) : (
-          // fallback quando não há capa ou a imagem falha: o título continua visível
-          <div className="book-card__placeholder" aria-hidden="true">
-            <span>{book.title}</span>
-          </div>
-        )}
-      </div>
-
-      <div className="book-card__body">
-        <h3 className="book-card__title">{book.title}</h3>
->>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
         <p className="book-card__author">{book.authors.join(', ')}</p>
         <Rating value={book.averageRating} count={book.reviewCount} />
         <div className="book-card__price-row">

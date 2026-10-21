@@ -22,10 +22,7 @@
   box-shadow: var(--shadow);
 }
 .book-card__media { position: relative; aspect-ratio: 2 / 3; border-radius: 6px; overflow: hidden; background: #efe8db; }
-<<<<<<< HEAD
 .book-card__media-link { display: block; width: 100%; height: 100%; }
-=======
->>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 .book-card__media img { width: 100%; height: 100%; object-fit: cover; }
 .book-card__placeholder {
   height: 100%; display: grid; place-items: center; padding: var(--space-4); text-align: center;
@@ -38,19 +35,13 @@
   padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
 }
 .badge--discount { background: var(--danger); }
-<<<<<<< HEAD
 .badge--inline { position: static; display: inline-block; margin-bottom: var(--space-2); width: fit-content; }
-=======
->>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 .favorite-btn { position: absolute; top: 2px; right: 2px; z-index: 1; background: rgb(255 255 255 / 90%); color: var(--muted); width: 40px; height: 40px; }
 .favorite-btn.is-active { color: var(--gold); }
 
 .book-card__body { display: flex; flex-direction: column; gap: 2px; flex: 1; }
 .book-card__title { font-size: 1rem; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.4em; }
-<<<<<<< HEAD
 .book-card__title a:hover { text-decoration: underline; }
-=======
->>>>>>> eef4721feea8c8fd2831a9eb36cc6284c65b2096
 .book-card__author { color: var(--muted); font-size: 0.85rem; }
 .rating { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; color: var(--gold); margin-top: var(--space-1); }
 .rating strong { color: var(--ink); }
