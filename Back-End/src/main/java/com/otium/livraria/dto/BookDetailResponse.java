@@ -22,10 +22,6 @@ public record BookDetailResponse(
         String publisher,
         LocalDate publishedAt,
         String language,
-        int edition,
-        String dimensions,
-        /** Uma linha por item do sumário (o front divide por quebra de linha). */
-        List<String> summary,
         CategoryResponse category,
         List<String> authors,
         double averageRating,

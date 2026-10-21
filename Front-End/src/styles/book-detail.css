@@ -43,8 +43,8 @@
 .book-detail__text h2 { font-size: 1.2rem; margin-bottom: var(--space-2); }
 .book-detail__text p { color: var(--ink); line-height: 1.6; }
 .book-detail__muted { color: var(--muted); }
-.toc-list { display: flex; flex-direction: column; gap: var(--space-1); color: var(--ink); }
-.toc-list li { padding-block: 2px; }
+/* sinopses vêm da API com parágrafos separados por linha em branco */
+.book-detail__sinopse { white-space: pre-line; }
 
 .link-btn { background: none; border: 0; color: var(--accent); font-weight: 700; font-size: 0.85rem; cursor: pointer; padding: var(--space-2) 0; text-transform: uppercase; letter-spacing: 0.02em; }
 .link-btn:hover { text-decoration: underline; }

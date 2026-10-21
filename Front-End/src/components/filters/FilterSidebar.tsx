@@ -1,13 +1,11 @@
 import { useAsync } from '../../hooks/useAsync';
 import { authorService } from '../../services/authorService';
 import { categoryService } from '../../services/categoryService';
-import { collectionService } from '../../services/collectionService';
 import { FilterSection } from './FilterSection';
 
 export interface FilterSelection {
   categoryIds: string[];
   authorIds: string[];
-  collectionIds: string[];
 }
 
 interface Props {
@@ -15,15 +13,14 @@ interface Props {
   onChange: (next: FilterSelection) => void;
 }
 
-const EMPTY: FilterSelection = { categoryIds: [], authorIds: [], collectionIds: [] };
+const EMPTY: FilterSelection = { categoryIds: [], authorIds: [] };
 
-/** Os dois sistemas de filtro do catálogo: este (Assunto/Autores/Coleção) e o SortMenu (Relevância). */
+/** Os dois sistemas de filtro do catálogo: este (Assunto/Autores) e o SortMenu (Relevância). */
 export function FilterSidebar({ selection, onChange }: Props) {
   const { data: categories, loading: loadingCategories } = useAsync((s) => categoryService.list(s), []);
   const { data: authors, loading: loadingAuthors } = useAsync((s) => authorService.list(s), []);
-  const { data: collections, loading: loadingCollections } = useAsync((s) => collectionService.list(s), []);
 
-  const totalSelected = selection.categoryIds.length + selection.authorIds.length + selection.collectionIds.length;
+  const totalSelected = selection.categoryIds.length + selection.authorIds.length;
 
   return (
     <aside className="filters" aria-label="Filtros">
@@ -49,14 +46,6 @@ export function FilterSidebar({ selection, onChange }: Props) {
         loading={loadingAuthors}
         selected={selection.authorIds}
         onChange={(authorIds) => onChange({ ...selection, authorIds })}
-        defaultOpen={false}
-      />
-      <FilterSection
-        title="Coleção"
-        options={collections ?? []}
-        loading={loadingCollections}
-        selected={selection.collectionIds}
-        onChange={(collectionIds) => onChange({ ...selection, collectionIds })}
         defaultOpen={false}
       />
     </aside>

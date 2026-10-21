@@ -31,9 +31,6 @@ public final class BookSpecifications {
             if (notEmpty(f.categoryIds())) {
                 predicates.add(root.get("category").get("id").in(f.categoryIds()));
             }
-            if (notEmpty(f.collectionIds())) {
-                predicates.add(root.get("collection").get("id").in(f.collectionIds()));
-            }
             if (notEmpty(f.authorIds())) {
                 // subquery evita duplicar linhas (join) e quebrar a paginação
                 Subquery<UUID> sub = query.subquery(UUID.class);

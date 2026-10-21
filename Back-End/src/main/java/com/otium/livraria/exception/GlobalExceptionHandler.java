@@ -43,6 +43,13 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, "EmailAlreadyExists", ex.getMessage(), req);
     }
 
+    @ExceptionHandler(ExternalServiceException.class)
+    public ResponseEntity<ErrorResponse> externalService(ExternalServiceException ex, HttpServletRequest req) {
+        log.warn("Falha em serviço externo: {}", ex.getMessage());
+        return build(HttpStatus.BAD_GATEWAY, "ExternalServiceUnavailable",
+                "Serviço externo indisponível. Tente novamente mais tarde.", req);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> validation(MethodArgumentNotValidException ex, HttpServletRequest req) {
         List<ErrorResponse.FieldViolation> details = ex.getBindingResult().getFieldErrors().stream()

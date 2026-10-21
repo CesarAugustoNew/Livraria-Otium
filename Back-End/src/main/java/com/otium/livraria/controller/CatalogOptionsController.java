@@ -1,7 +1,6 @@
 package com.otium.livraria.controller;
 
 import com.otium.livraria.dto.AuthorResponse;
-import com.otium.livraria.dto.CollectionResponse;
 import com.otium.livraria.service.CatalogOptionsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
@@ -27,11 +26,5 @@ public class CatalogOptionsController {
     @GetMapping("/authors")
     public List<AuthorResponse> authors() {
         return service.authors();
-    }
-
-    @Operation(summary = "Coleções editoriais, em ordem alfabética (filtro lateral)")
-    @GetMapping("/collections")
-    public List<CollectionResponse> collections() {
-        return service.collections();
     }
 }

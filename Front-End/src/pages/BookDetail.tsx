@@ -12,7 +12,6 @@ import { bookService } from '../services/bookService';
 import { formatPrice, installment } from '../utils/format';
 
 const SINOPSE_LIMIT = 220;
-const SUMARIO_PREVIEW = 2;
 
 export function BookDetail() {
   const { id = '' } = useParams();
@@ -22,7 +21,6 @@ export function BookDetail() {
 
   const [coverFailed, setCoverFailed] = useState(false);
   const [sinopseOpen, setSinopseOpen] = useState(false);
-  const [sumarioOpen, setSumarioOpen] = useState(false);
   const [cep, setCep] = useState('');
 
   if (loading) {
@@ -53,7 +51,6 @@ export function BookDetail() {
   const sinopseNeedsToggle = (book.description?.length ?? 0) > SINOPSE_LIMIT;
   const sinopseText =
     !sinopseNeedsToggle || sinopseOpen ? book.description : `${book.description!.slice(0, SINOPSE_LIMIT)}…`;
-  const sumarioVisible = sumarioOpen ? book.summary : book.summary.slice(0, SUMARIO_PREVIEW);
 
   return (
     <div className="container section book-detail">
@@ -158,29 +155,17 @@ export function BookDetail() {
         <div className="book-detail__text">
           <section>
             <h2>Sinopse</h2>
-            {sinopseText ? <p>{sinopseText}</p> : <p className="book-detail__muted">Sinopse não disponível.</p>}
+            {sinopseText ? (
+              <p className="book-detail__sinopse">{sinopseText}</p>
+            ) : (
+              <p className="book-detail__muted">Sinopse não disponível.</p>
+            )}
             {sinopseNeedsToggle && (
               <button type="button" className="link-btn" onClick={() => setSinopseOpen((o) => !o)}>
                 {sinopseOpen ? 'Ver menos' : 'Ver mais'}
               </button>
             )}
           </section>
-
-          {book.summary.length > 0 && (
-            <section>
-              <h2>Sumário</h2>
-              <ul className="toc-list">
-                {sumarioVisible.map((line, i) => (
-                  <li key={i}>{line}</li>
-                ))}
-              </ul>
-              {book.summary.length > SUMARIO_PREVIEW && (
-                <button type="button" className="link-btn" onClick={() => setSumarioOpen((o) => !o)}>
-                  {sumarioOpen ? 'Ver menos' : 'Ver mais'}
-                </button>
-              )}
-            </section>
-          )}
         </div>
 
         <aside className="spec-table">
@@ -192,19 +177,15 @@ export function BookDetail() {
                 <dd>{book.isbn}</dd>
               </div>
             )}
-            {book.dimensions && (
+            {book.publisher && (
               <div>
-                <dt>Dimensão</dt>
-                <dd>{book.dimensions}</dd>
+                <dt>Editora</dt>
+                <dd>{book.publisher}</dd>
               </div>
             )}
             <div>
               <dt>Idioma</dt>
               <dd>{book.language}</dd>
-            </div>
-            <div>
-              <dt>Edição</dt>
-              <dd>{book.edition}</dd>
             </div>
             {book.pages && (
               <div>

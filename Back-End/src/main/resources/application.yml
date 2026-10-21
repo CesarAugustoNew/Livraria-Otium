@@ -33,6 +33,11 @@ app:
   seed:
     admin-email: ${ADMIN_EMAIL:admin@otium.com}
     admin-password: ${ADMIN_PASSWORD:admin12345}
+  # API pública de livros (sem chave). Fornece os dados bibliográficos; preço e estoque são da loja.
+  open-library:
+    base-url: ${OPEN_LIBRARY_URL:https://openlibrary.org}
+    connect-timeout: 5s
+    read-timeout: 20s
 
 springdoc:
   swagger-ui:

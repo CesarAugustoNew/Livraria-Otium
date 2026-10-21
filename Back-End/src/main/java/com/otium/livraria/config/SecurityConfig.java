@@ -36,8 +36,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        String[] catalog = {"/api/books/**", "/api/categories/**", "/api/authors/**", "/api/collections/**",
-                "/api/banners/**"};
+        String[] catalog = {"/api/books/**", "/api/categories/**", "/api/authors/**", "/api/banners/**"};
 
         http
                 .csrf(AbstractHttpConfigurer::disable) // API stateless com Bearer token, sem cookies de sessão
@@ -56,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, catalog).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, catalog).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, catalog).hasRole("ADMIN")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

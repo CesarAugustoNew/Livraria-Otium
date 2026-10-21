@@ -15,7 +15,7 @@ interface Props {
   loading?: boolean;
 }
 
-/** Uma seção "Assunto"/"Autores"/"Coleção" do filtro lateral: título clicável + lista de checkboxes com rolagem. */
+/** Uma seção "Assunto"/"Autores" do filtro lateral: título clicável + lista de checkboxes com rolagem. */
 export function FilterSection({ title, options, selected, onChange, defaultOpen = true, loading }: Props) {
   const [open, setOpen] = useState(defaultOpen);
   const panelId = useId();

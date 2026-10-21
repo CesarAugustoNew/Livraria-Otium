@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Capa de Memórias Póstumas de Brás Cubas">
-<rect width="300" height="450" fill="#4a2c3d"/>
-<rect x="12" y="12" width="276" height="426" fill="none" stroke="#f0d9b5" stroke-width="1.5" opacity=".7"/>
-<g><path d="M40 190 v-70 a37 37 0 0 1 74 0 v70" fill="none" stroke="#f0d9b5" stroke-width="3" opacity="0.9"/><path d="M114 190 v-70 a37 37 0 0 1 74 0 v70" fill="none" stroke="#f0d9b5" stroke-width="3" opacity="0.75"/><path d="M188 190 v-70 a37 37 0 0 1 74 0 v70" fill="none" stroke="#f0d9b5" stroke-width="3" opacity="0.6000000000000001"/></g>
-<text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="28" fill="#f0d9b5"><tspan x="150" y="266">Memórias</tspan><tspan x="150" y="299">Póstumas de</tspan><tspan x="150" y="331">Brás Cubas</tspan></text>
-<line x1="110" y1="374" x2="190" y2="374" stroke="#f0d9b5" stroke-width="1.5" opacity=".7"/>
-<text x="150" y="398" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.5" fill="#f0d9b5">MACHADO DE ASSIS</text>
-<text x="150" y="428" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="4" fill="#f0d9b5" opacity=".7">OTIUM</text>
-</svg>

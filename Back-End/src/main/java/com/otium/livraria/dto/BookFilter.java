@@ -9,7 +9,6 @@ public record BookFilter(
         String title,
         List<UUID> categoryIds,
         List<UUID> authorIds,
-        List<UUID> collectionIds,
         BigDecimal minPrice,
         BigDecimal maxPrice,
         Boolean available,

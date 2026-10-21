@@ -11,4 +11,8 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
 
     @EntityGraph(attributePaths = "category")
     Optional<Book> findByIdAndActiveTrue(UUID id);
+
+    Optional<Book> findByIsbn(String isbn);
+
+    boolean existsBySlug(String slug);
 }

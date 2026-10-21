@@ -21,10 +21,6 @@ export interface BookSummary {
   authors: string[];
   averageRating: number;
   reviewCount: number;
-  /** Somente nos mocks, para os filtros funcionarem sem backend. */
-  categoryId?: string;
-  authorIds?: string[];
-  collectionId?: string;
 }
 
 export interface BookDetail {
@@ -44,10 +40,6 @@ export interface BookDetail {
   publisher: string | null;
   publishedAt: string | null;
   language: string;
-  edition: number;
-  dimensions: string | null;
-  /** Uma linha por item do sumário. */
-  summary: string[];
   category: Category;
   authors: string[];
   averageRating: number;
@@ -61,12 +53,6 @@ export interface Category {
 }
 
 export interface Author {
-  id: string;
-  name: string;
-  slug: string;
-}
-
-export interface BookCollection {
   id: string;
   name: string;
   slug: string;
@@ -94,7 +80,6 @@ export interface BookQuery {
   title?: string;
   categoryIds?: string[];
   authorIds?: string[];
-  collectionIds?: string[];
   release?: boolean;
   available?: boolean;
   page?: number;

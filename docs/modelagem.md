@@ -8,7 +8,6 @@ User 1──N Favorite N──1 Book
 User 1──N Order 1──N OrderItem N──1 Book
 User 1──N Review N──1 Book
 Book N──1 Category
-Book N──1 BookCollection (opcional)
 Book 1──N BookAuthor N──1 Author
 Banner (independente)
 ```
@@ -17,9 +16,8 @@ Banner (independente)
 |---|---|
 | `users` | `email` UNIQUE; `role` USER/ADMIN; `password_hash` (BCrypt) |
 | `categories` | `name` e `slug` UNIQUE (menu "Assuntos") |
-| `collections` | coleção editorial; entidade `BookCollection` |
-| `authors` | índice em `name` |
-| `books` | `price >= 0`, `stock_quantity >= 0` (CHECK); disponibilidade é derivada; `is_release` alimenta a vitrine |
+| `authors` | índice em `name`; `slug` UNIQUE (deduplica grafias como "Assis"/"Assís" no import) |
+| `books` | `isbn` UNIQUE (chave do import do Open Library); `price >= 0`, `stock_quantity >= 0` (CHECK); disponibilidade é derivada; `is_release` alimenta a vitrine |
 | `book_authors` | UNIQUE (`book_id`,`author_id`); `position` mantém a ordem dos autores |
 | `favorites` | UNIQUE (`user_id`,`book_id`) |
 | `carts` | `user_id` UNIQUE (1 carrinho por usuário) |
@@ -32,4 +30,5 @@ Banner (independente)
 ## Decisões
 - `BookAuthor` é entidade (não `@ManyToMany`) para guardar a ordem dos autores.
 - Preço e título são copiados para `order_items`: reajustes não alteram pedidos antigos.
+- Dados bibliográficos vêm do Open Library; preço e estoque pertencem à loja e não são sobrescritos ao reimportar.
 - `ddl-auto=update` só em desenvolvimento; migrar para Flyway antes de produção.

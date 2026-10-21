@@ -31,7 +31,7 @@ public class BookController {
     }
 
     @Operation(summary = "Lista/busca livros com filtros, paginação e ordenação",
-            description = "Filtros de grupo (categoryIds, authorIds, collectionIds) aceitam vários ids separados por vírgula: "
+            description = "Filtros de grupo (categoryIds, authorIds) aceitam vários ids separados por vírgula: "
                     + "dentro do grupo vale OU, entre grupos vale E. sort: relevance (padrão), best_sellers, newest, "
                     + "discount, price_desc, price_asc, title_asc, title_desc. size máximo: 50.")
     @GetMapping
@@ -39,7 +39,6 @@ public class BookController {
             @RequestParam(required = false) String title,
             @RequestParam(required = false) List<UUID> categoryIds,
             @RequestParam(required = false) List<UUID> authorIds,
-            @RequestParam(required = false) List<UUID> collectionIds,
             @RequestParam(required = false) BigDecimal minPrice,
             @RequestParam(required = false) BigDecimal maxPrice,
             @RequestParam(required = false) Boolean available,
@@ -47,7 +46,7 @@ public class BookController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "12") int size,
             @RequestParam(required = false) String sort) {
-        BookFilter filter = new BookFilter(title, categoryIds, authorIds, collectionIds, minPrice, maxPrice, available, release);
+        BookFilter filter = new BookFilter(title, categoryIds, authorIds, minPrice, maxPrice, available, release);
         return bookService.search(filter, page, size, BookSort.parse(sort));
     }
 

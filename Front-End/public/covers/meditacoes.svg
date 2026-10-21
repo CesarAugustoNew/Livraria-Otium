@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Capa de Meditações">
-<rect width="300" height="450" fill="#3d4f6b"/>
-<rect x="12" y="12" width="276" height="426" fill="none" stroke="#eadfc4" stroke-width="1.5" opacity=".7"/>
-<g><rect x="62" y="80" width="26" height="110" fill="#eadfc4" opacity=".9"/><rect x="56" y="70" width="38" height="10" fill="#eadfc4"/><rect x="112" y="80" width="26" height="110" fill="#eadfc4" opacity=".9"/><rect x="106" y="70" width="38" height="10" fill="#eadfc4"/><rect x="162" y="80" width="26" height="110" fill="#eadfc4" opacity=".9"/><rect x="156" y="70" width="38" height="10" fill="#eadfc4"/><rect x="212" y="80" width="26" height="110" fill="#eadfc4" opacity=".9"/><rect x="206" y="70" width="38" height="10" fill="#eadfc4"/></g>
-<text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="28" fill="#eadfc4"><tspan x="150" y="300">Meditações</tspan></text>
-<line x1="110" y1="374" x2="190" y2="374" stroke="#eadfc4" stroke-width="1.5" opacity=".7"/>
-<text x="150" y="398" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="1.5" fill="#eadfc4">MARCO AURÉLIO</text>
-<text x="150" y="428" text-anchor="middle" font-family="Georgia, serif" font-size="10" letter-spacing="4" fill="#eadfc4" opacity=".7">OTIUM</text>
-</svg>

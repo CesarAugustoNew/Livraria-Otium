@@ -26,7 +26,6 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 @Table(name = "books", indexes = {
         @Index(name = "idx_books_category", columnList = "category_id"),
-        @Index(name = "idx_books_collection", columnList = "collection_id"),
         @Index(name = "idx_books_title", columnList = "title"),
         @Index(name = "idx_books_published_at", columnList = "published_at")
 })
@@ -82,18 +81,6 @@ public class Book extends BaseEntity {
     @Column(nullable = false, length = 40)
     private String language = "Português";
 
-    @ColumnDefault("1")
-    @Column(nullable = false)
-    private int edition = 1;
-
-    /** Ex.: "13.7 x 21.0 x 1.3 cm". Texto livre para não travar em uma unidade só. */
-    @Column(length = 40)
-    private String dimensions;
-
-    /** Sumário (uma linha por item, ex.: "Prefácio", "Capítulo 1 – ..."), exibido na página do livro. */
-    @Column(columnDefinition = "text")
-    private String summary;
-
     /** Marca o livro como "lançamento" para a vitrine da home. */
     @Column(name = "is_release", nullable = false)
     private boolean release;
@@ -104,10 +91,6 @@ public class Book extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "collection_id")
-    private BookCollection collection;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("position ASC")

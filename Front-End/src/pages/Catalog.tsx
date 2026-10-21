@@ -23,14 +23,12 @@ export function Catalog() {
   const selection: FilterSelection = {
     categoryIds: splitParam(params.get('categoria')),
     authorIds: splitParam(params.get('autor')),
-    collectionIds: splitParam(params.get('colecao')),
   };
 
   const query: BookQuery = {
     title: q,
     categoryIds: selection.categoryIds,
     authorIds: selection.authorIds,
-    collectionIds: selection.collectionIds,
     release: params.get('lancamentos') === 'true' ? true : undefined,
     page,
     size: PAGE_SIZE,
@@ -52,13 +50,12 @@ export function Catalog() {
     update({
       categoria: next.categoryIds.join(',') || undefined,
       autor: next.authorIds.join(',') || undefined,
-      colecao: next.collectionIds.join(',') || undefined,
       page: undefined,
     });
   }
 
   const title = q ? `Resultados para “${q}”` : params.get('lancamentos') ? 'Lançamentos' : 'Todos os livros';
-  const activeFilterCount = selection.categoryIds.length + selection.authorIds.length + selection.collectionIds.length;
+  const activeFilterCount = selection.categoryIds.length + selection.authorIds.length;
 
   return (
     <div className="container section catalog">
