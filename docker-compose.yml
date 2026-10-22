@@ -8,7 +8,8 @@ services:
       POSTGRES_USER: otium
       POSTGRES_PASSWORD: otium
     ports:
-      - "5432:5432"
+      # 5433 no host para não colidir com um PostgreSQL instalado localmente na 5432
+      - "5433:5432"
     volumes:
       - otium-db-data:/var/lib/postgresql/data
 

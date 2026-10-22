@@ -146,6 +146,8 @@ class OpenLibraryBookProviderTest {
                 """;
         assertThat(OpenLibraryBookProvider.cleanDescription(raw))
                 .isEqualTo("From wikipedia:\n\nLivro narra a história de alguém.\n\nSegundo parágrafo.");
+        assertThat(OpenLibraryBookProvider.cleanDescription("é *A hora da estrela,* o livro; 2 * 3 = 6"))
+                .isEqualTo("é A hora da estrela, o livro; 2 * 3 = 6");
         assertThat(OpenLibraryBookProvider.cleanDescription("   ")).isNull();
     }
 }

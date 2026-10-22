@@ -133,6 +133,7 @@ public class OpenLibraryBookProvider implements BookMetadataProvider {
                 .replaceAll("\\[([^\\]]+)]\\[\\d+]", "$1")        // [texto][1]   -> texto
                 .replace("**", "")
                 .replace("__", "")
+                .replaceAll("\\*(?!\\s)([^*\\n]+?)(?<!\\s)\\*", "$1")  // *itálico* -> itálico (não pega "2 * 3")
                 .replaceAll("\n{3,}", "\n\n")
                 .trim();
         return text.isEmpty() ? null : text;

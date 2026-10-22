@@ -62,6 +62,9 @@ export interface Banner {
   id: string;
   title: string;
   subtitle: string | null;
+  badge: string | null;
+  ctaLabel: string | null;
+  couponCode: string | null;
   imageUrl: string | null;
   linkUrl: string | null;
 }

@@ -19,7 +19,8 @@ public class BannerService {
 
     public List<BannerResponse> findVisible() {
         return repository.findVisible(Instant.now()).stream()
-                .map(b -> new BannerResponse(b.getId(), b.getTitle(), b.getSubtitle(), b.getImageUrl(), b.getLinkUrl()))
+                .map(b -> new BannerResponse(b.getId(), b.getTitle(), b.getSubtitle(), b.getBadge(),
+                        b.getCtaLabel(), b.getCouponCode(), b.getImageUrl(), b.getLinkUrl()))
                 .toList();
     }
 }

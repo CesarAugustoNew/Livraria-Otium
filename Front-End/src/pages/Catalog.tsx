@@ -9,30 +9,21 @@ import { ErrorState } from '../components/ui/ErrorState';
 import { useAsync } from '../hooks/useAsync';
 import { bookService } from '../services/bookService';
 import type { BookQuery, BookSort } from '../types';
+import { catalogQueryFromParams } from '../utils/catalogQuery';
 
 const PAGE_SIZE = 12;
-const splitParam = (value: string | null): string[] => (value ? value.split(',').filter(Boolean) : []);
 
 export function Catalog() {
   const [params, setParams] = useSearchParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const q = params.get('q') ?? undefined;
-  const page = Math.max(0, Number(params.get('page') ?? 0) || 0);
-  const sort = (params.get('sort') as BookSort) || 'relevance';
+  const query: BookQuery = { ...catalogQueryFromParams(params), size: PAGE_SIZE };
+  const q = query.title;
+  const page = query.page ?? 0;
+  const sort = query.sort as BookSort;
   const selection: FilterSelection = {
-    categoryIds: splitParam(params.get('categoria')),
-    authorIds: splitParam(params.get('autor')),
-  };
-
-  const query: BookQuery = {
-    title: q,
-    categoryIds: selection.categoryIds,
-    authorIds: selection.authorIds,
-    release: params.get('lancamentos') === 'true' ? true : undefined,
-    page,
-    size: PAGE_SIZE,
-    sort,
+    categoryIds: query.categoryIds ?? [],
+    authorIds: query.authorIds ?? [],
   };
 
   const { data, loading, error, reload } = useAsync(

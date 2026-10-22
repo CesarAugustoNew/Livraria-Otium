@@ -76,20 +76,33 @@ public class DevDataSeeder implements CommandLineRunner {
         users.save(admin);
     }
 
-    /** Verifica antes de criar: se o import falhar, o próximo start passa por aqui de novo. */
+    /**
+     * Promoções que existem de verdade na loja: o cupom é aceito no carrinho e o frete segue a regra do front.
+     * Verifica antes de criar: se o import falhar, o próximo start passa por aqui de novo.
+     */
     private void createBanners() {
         if (banners.count() > 0) {
             return;
         }
         int order = 1;
+        // etiqueta, título, subtítulo, cupom, botão, link
         for (String[] b : new String[][]{
-                {"Otium: tempo para ler", "Sua próxima leitura está a um clique", "/livros"},
-                {"Lançamentos da semana", "Descubra o que acabou de chegar", "/livros?lancamentos=true"},
-                {"Clássicos em destaque", "Machado, Clarice, Pessoa e mais", "/livros"}}) {
+                {"Cupom", "15% off na sua primeira compra", "Digite o código no carrinho antes de fechar o pedido.",
+                        "BEMVINDO", "Escolher livros", "/livros"},
+                {"Ofertas", "Clássicos com desconto", "Edições selecionadas com preço especial nesta semana.",
+                        null, "Ver ofertas", "/livros?sort=discount"},
+                {"Frete grátis", "Frete grátis acima de R$ 150", // espaço não separável: "R$" não fica sozinho na linha
+"Junte alguns títulos e a entrega fica por nossa conta.",
+                        null, "Ver mais vendidos", "/livros?sort=best_sellers"},
+                {"Lançamentos", "Acabaram de chegar", "Os títulos mais recentes do catálogo.",
+                        null, "Ver lançamentos", "/livros?lancamentos=true"}}) {
             Banner banner = new Banner();
-            banner.setTitle(b[0]);
-            banner.setSubtitle(b[1]);
-            banner.setLinkUrl(b[2]);
+            banner.setBadge(b[0]);
+            banner.setTitle(b[1]);
+            banner.setSubtitle(b[2]);
+            banner.setCouponCode(b[3]);
+            banner.setCtaLabel(b[4]);
+            banner.setLinkUrl(b[5]);
             banner.setDisplayOrder(order++);
             banners.save(banner);
         }

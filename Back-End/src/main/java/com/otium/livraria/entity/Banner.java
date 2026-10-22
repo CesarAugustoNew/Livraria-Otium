@@ -21,6 +21,18 @@ public class Banner extends BaseEntity {
     @Column(length = 250)
     private String subtitle;
 
+    /** Tipo da promoção exibido como etiqueta (ex.: "Cupom", "Ofertas"). */
+    @Column(length = 40)
+    private String badge;
+
+    /** Texto do botão que leva a {@code linkUrl}. */
+    @Column(length = 40)
+    private String ctaLabel;
+
+    /** Código de cupom em destaque; deve existir no carrinho. */
+    @Column(length = 30)
+    private String couponCode;
+
     @Column(length = 500)
     private String imageUrl;
 
