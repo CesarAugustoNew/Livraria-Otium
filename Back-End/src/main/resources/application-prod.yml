@@ -1,0 +1,18 @@
+# Perfil de produção (SPRING_PROFILES_ACTIVE=prod). Segredos e conexão não têm valor padrão:
+# se alguma variável faltar, a aplicação não sobe, em vez de ir ao ar com as senhas de desenvolvimento.
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      # o pooler gratuito do Supabase aceita poucas conexões simultâneas
+      maximum-pool-size: 5
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+  seed:
+    admin-password: ${ADMIN_PASSWORD}

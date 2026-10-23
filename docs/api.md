@@ -31,7 +31,7 @@ Os livros vêm da API pública do [Open Library](https://openlibrary.org/dev/doc
 - O import busca em lote os dados bibliográficos (título, autores, editora, páginas, ano, capa, idioma, sinopse).
 - Preço, desconto, estoque, lançamento e vendas são da loja (`StorePricing`): gerados com o ISBN como semente,
   então são sempre os mesmos. Reimportar atualiza só os dados bibliográficos e preserva preço e estoque.
-- No profile `dev` o import roda na subida com o banco vazio. Se o Open Library estiver fora do ar, a API sobe
+- O import roda na subida quando o banco está vazio, em qualquer perfil (desligue com `SEED_ENABLED=false`). Se o Open Library estiver fora do ar, a API sobe
   com o catálogo vazio e o import pode ser refeito por `POST /api/admin/catalog/import` (responde 502 se falhar).
 - `CatalogImportReport`: `{ created, updated, notFound[] }`.
 

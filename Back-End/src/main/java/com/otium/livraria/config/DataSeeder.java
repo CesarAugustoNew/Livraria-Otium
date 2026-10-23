@@ -13,19 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * Dados de desenvolvimento: admin, banners e o catálogo importado do Open Library. Roda só no profile "dev"
- * e só com o catálogo vazio. Sem rede, a aplicação sobe mesmo assim e o import pode ser refeito pelo endpoint admin.
+ * Dados iniciais da loja: admin, banners e o catálogo importado do Open Library. Roda só com o catálogo vazio,
+ * em qualquer perfil (desligue com SEED_ENABLED=false). Sem rede, a aplicação sobe mesmo assim e o import pode
+ * ser refeito pelo endpoint admin.
  */
 @Component
-@Profile("dev")
-public class DevDataSeeder implements CommandLineRunner {
+@ConditionalOnProperty(name = "app.seed.enabled", havingValue = "true", matchIfMissing = true)
+public class DataSeeder implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(DevDataSeeder.class);
+    private static final Logger log = LoggerFactory.getLogger(DataSeeder.class);
 
     private final UserRepository users;
     private final BookRepository books;
@@ -35,7 +36,7 @@ public class DevDataSeeder implements CommandLineRunner {
     private final String adminEmail;
     private final String adminPassword;
 
-    public DevDataSeeder(UserRepository users, BookRepository books, BannerRepository banners,
+    public DataSeeder(UserRepository users, BookRepository books, BannerRepository banners,
                          CatalogImportService catalogImport, PasswordEncoder encoder,
                          @Value("${app.seed.admin-email}") String adminEmail,
                          @Value("${app.seed.admin-password}") String adminPassword) {
@@ -57,7 +58,7 @@ public class DevDataSeeder implements CommandLineRunner {
         createBanners();
         try {
             CatalogImportReport report = catalogImport.importCatalog();
-            log.info("Dados de desenvolvimento criados ({} livros). Admin: {}", report.created(), adminEmail);
+            log.info("Dados iniciais criados ({} livros). Admin: {}", report.created(), adminEmail);
         } catch (ExternalServiceException e) {
             log.warn("Catálogo não importado ({}). A loja sobe vazia; tente POST /api/admin/catalog/import.",
                     e.getMessage());
