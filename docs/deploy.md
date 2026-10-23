@@ -15,7 +15,15 @@ a distância entre o visitante e a API.
 
 ## 1. Supabase (banco)
 
-1. Crie um projeto e anote a **senha do banco** definida na criação.
+Um único projeto do Supabase pode servir vários sistemas: cada um usa **o próprio schema** dentro do mesmo banco
+`postgres`, como pastas separadas. A Livraria usa o schema `livraria_otium`; outro projeto usaria, por exemplo,
+`meu_outro_app`. Os schemas não se misturam.
+
+Vantagem extra: o Supabase publica automaticamente o schema `public` pela API REST dele (com a chave pública do
+projeto). Um schema próprio fica fora dessa API, então os dados só são acessíveis pelo backend.
+
+1. Use um projeto existente ou crie um, e anote a **senha do banco** (definida na criação; dá para redefinir em
+   *Project Settings → Database*).
 2. Clique em **Connect** e escolha **Session pooler**, com o tipo de conexão **JDBC**.
    - Não use a *Direct connection*: ela só funciona por IPv6 e o Render só conecta por IPv4.
    - Não use o *Transaction pooler* (porta 6543): o Hibernate depende de recursos que ele não suporta.
@@ -26,8 +34,24 @@ a distância entre o visitante e a API.
 | `DB_URL` | `jdbc:postgresql://<host-do-pooler>:5432/postgres?sslmode=require` (copie o host do painel) |
 | `DB_USER` | `postgres.<id-do-projeto>` (com o id, não só `postgres`) |
 | `DB_PASSWORD` | a senha do banco |
+| `DB_SCHEMA` | `livraria_otium` |
 
-As tabelas são criadas pela própria API na primeira subida.
+Não é preciso criar o schema nem as tabelas: na primeira subida a API cria o schema `livraria_otium` e as
+tabelas dentro dele. Para conferir depois, abra o **Table Editor** do Supabase e troque o schema no seletor do
+topo (ele começa em `public`).
+
+### Opcional: um usuário de banco por projeto
+
+Com o usuário `postgres`, qualquer projeto consegue ler os schemas dos outros. Se quiser isolar, crie no
+**SQL Editor** um usuário dono só do schema da Livraria (troque a senha):
+
+```sql
+create role livraria_otium_app login password 'troque-esta-senha';
+create schema if not exists livraria_otium authorization livraria_otium_app;
+```
+
+No Render, use `DB_USER` = `livraria_otium_app.<id-do-projeto>` e `DB_PASSWORD` = a senha acima. Se o pooler
+recusar a autenticação, volte para o usuário `postgres`: o schema próprio continua separando os dados.
 
 ## 2. Render (API)
 
@@ -43,7 +67,7 @@ As tabelas são criadas pela própria API na primeira subida.
 | Variável | Valor |
 |---|---|
 | `SPRING_PROFILES_ACTIVE` | `prod` |
-| `DB_URL`, `DB_USER`, `DB_PASSWORD` | os valores do Supabase (passo 1) |
+| `DB_URL`, `DB_USER`, `DB_PASSWORD`, `DB_SCHEMA` | os valores do Supabase (passo 1) |
 | `JWT_SECRET` | um texto aleatório com 32+ caracteres (veja abaixo) |
 | `ADMIN_PASSWORD` | a senha do usuário `admin@otium.com` em produção |
 | `CORS_ALLOWED_ORIGINS` | a URL da Vercel, ex.: `https://livraria-otium.vercel.app` (sem `/` no final) |
@@ -100,3 +124,5 @@ Depois disso, cada `git push` no `main` atualiza o Render e a Vercel automaticam
 | A loja chama `/api/...` na própria Vercel e recebe 404 | Falta `VITE_API_URL`. Ela entra no build: depois de criar, refaça o deploy na Vercel. |
 | Erro 404 ao recarregar `/livros` | O *Root Directory* da Vercel precisa ser `Front-End`, onde está o `vercel.json`. |
 | API fora do ar depois de dias sem uso | O Supabase pausou o projeto. Reative no painel. |
+| Tabelas não aparecem no Table Editor | Elas estão no schema `livraria_otium`; troque o schema no seletor do topo. |
+| Tabelas foram criadas no `public` | Falta `DB_SCHEMA` no Render. Defina e refaça o deploy; depois apague as tabelas antigas do `public`. |

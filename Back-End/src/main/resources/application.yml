@@ -15,6 +15,12 @@ spring:
       hibernate:
         jdbc:
           time_zone: UTC
+        # schema das tabelas; num Postgres compartilhado entre projetos, cada um usa o seu (ex.: livraria_otium)
+        default_schema: ${DB_SCHEMA:public}
+      jakarta:
+        persistence:
+          # cria o schema na primeira subida se ele ainda não existir
+          create-database-schemas: true
 
 server:
   # o Render informa a porta pela variável PORT
