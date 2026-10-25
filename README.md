@@ -46,12 +46,13 @@ O que é comercial (preço, desconto, estoque, lançamento) pertence à loja e �
 - **Página do livro** com sinopse, especificações (ISBN, editora, idioma, páginas, ano) e parcelamento.
 - **Carrinho** com controle de quantidade, cupons (`BEMVINDO` e `OTIUM10`) e barra de progresso para o frete grátis.
 - **Checkout** com formulário de entrega e escolha de pagamento (cartão, Pix ou boleto).
-- **Cadastro e login** com JWT; rotas de escrita do catálogo e de administração restritas a `ADMIN`.
+- **Favoritos salvos na conta**: a estrela guarda o livro pela API e a página "Meus favoritos" lista os salvos.
+- **Cadastro e login** com JWT, com confirmação de senha no cadastro; rotas de escrita do catálogo e de administração restritas a `ADMIN`.
 - **Importação do catálogo** na subida da aplicação e sob demanda por um endpoint de administração.
 - **Layout responsivo**, com filtros em gaveta e carrosséis horizontais no celular.
 
-> Carrinho e favoritos ainda ficam em memória no front, e o checkout não gera pedido na API. Persistir carrinho,
-> favoritos e pedidos pelo backend é o próximo passo do projeto.
+> O carrinho ainda fica em memória no front, e o checkout não gera pedido na API. Persistir carrinho e pedidos
+> pelo backend é o próximo passo do projeto.
 
 ## Tecnologias
 

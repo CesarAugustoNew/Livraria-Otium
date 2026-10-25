@@ -8,6 +8,7 @@ import { BookDetail } from './pages/BookDetail';
 import { Cart } from './pages/Cart';
 import { Catalog } from './pages/Catalog';
 import { Checkout } from './pages/Checkout';
+import { Favorites } from './pages/Favorites';
 import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
@@ -26,7 +27,7 @@ export default function App() {
                 <Route path="livro/:id" element={<BookDetail />} />
                 <Route path="entrar" element={<Login />} />
                 <Route path="cadastro" element={<Register />} />
-                <Route path="favoritos" element={<NotFound soon />} />
+                <Route path="favoritos" element={<Favorites />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
               {/* Carrinho e checkout usam um layout enxuto, sem busca/menu, para reduzir distração. */}

@@ -43,12 +43,21 @@ public class BookService {
         Page<Book> books = bookRepository.findAll(
                 BookSpecifications.from(filter), PageRequest.of(safePage, safeSize, sort.toSort()));
 
-        List<UUID> ids = books.getContent().stream().map(Book::getId).toList();
-        Map<UUID, RatingSummary> ratings = ids.isEmpty() ? Map.of()
+        Map<UUID, RatingSummary> ratings = ratingsOf(books.getContent());
+        return PageResponse.from(books.map(b -> mapper.toSummary(b, ratings.get(b.getId()))));
+    }
+
+    /** Resumos com a nota média de cada livro, numa única consulta de avaliações. Mantém a ordem recebida. */
+    public List<BookSummaryResponse> toSummaries(List<Book> books) {
+        Map<UUID, RatingSummary> ratings = ratingsOf(books);
+        return books.stream().map(b -> mapper.toSummary(b, ratings.get(b.getId()))).toList();
+    }
+
+    private Map<UUID, RatingSummary> ratingsOf(List<Book> books) {
+        List<UUID> ids = books.stream().map(Book::getId).toList();
+        return ids.isEmpty() ? Map.of()
                 : reviewRepository.summarize(ids).stream()
                         .collect(Collectors.toMap(RatingSummary::getBookId, Function.identity()));
-
-        return PageResponse.from(books.map(b -> mapper.toSummary(b, ratings.get(b.getId()))));
     }
 
     public BookDetailResponse findById(UUID id) {

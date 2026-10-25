@@ -1,5 +1,8 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { favoriteService } from '../services/favoriteService';
 import type { BookSummary } from '../types';
+import { useAuth } from './AuthContext';
 import { useToast } from './ToastContext';
 
 export interface CartItem {
@@ -17,9 +20,9 @@ const KNOWN_COUPONS: Record<string, number> = { OTIUM10: 10, BEMVINDO: 15 };
 const MAX_QUANTITY_PER_ITEM = 10;
 
 /**
- * Estado local de carrinho e favoritos.
- * TEMPORÁRIO: quando /api/cart, /api/favorites e /api/orders existirem, as funções abaixo
- * passam a chamar os serviços correspondentes. Os componentes não precisam mudar.
+ * Carrinho e favoritos. Os favoritos ficam na conta (/api/favorites); o carrinho ainda é local.
+ * TEMPORÁRIO: quando /api/cart e /api/orders existirem, as funções do carrinho passam a chamar os serviços
+ * correspondentes. Os componentes não precisam mudar.
  */
 interface ShopState {
   cartItems: CartItem[];
@@ -29,6 +32,8 @@ interface ShopState {
   discount: number;
   cartTotal: number;
   favoriteIds: ReadonlySet<string>;
+  /** false enquanto os favoritos da conta ainda estão sendo carregados. */
+  favoritesReady: boolean;
   addToCart: (book: BookSummary, quantity?: number) => void;
   removeFromCart: (bookId: string) => void;
   setQuantity: (bookId: string, quantity: number) => void;
@@ -42,9 +47,34 @@ const ShopContext = createContext<ShopState | null>(null);
 
 export function ShopProvider({ children }: { children: ReactNode }) {
   const { notify } = useToast();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+  const [favoritesReady, setFavoritesReady] = useState(false);
   const [coupon, setCoupon] = useState<Coupon | null>(null);
+
+  // Carrega os favoritos ao entrar na conta e limpa ao sair.
+  useEffect(() => {
+    setFavoriteIds(new Set());
+    if (!user) {
+      setFavoritesReady(true);
+      return;
+    }
+    setFavoritesReady(false);
+    const controller = new AbortController();
+    favoriteService
+      .list(controller.signal)
+      .then((books) => setFavoriteIds(new Set(books.map((b) => b.id))))
+      .catch(() => {
+        // sem os favoritos a loja continua utilizável; a estrela só aparece vazia
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setFavoritesReady(true);
+      });
+    return () => controller.abort();
+  }, [user]);
 
   const addToCart = useCallback(
     (book: BookSummary, quantity = 1) => {
@@ -99,21 +129,32 @@ export function ShopProvider({ children }: { children: ReactNode }) {
 
   const removeCoupon = useCallback(() => setCoupon(null), []);
 
+  /** Atualiza a estrela na hora e desfaz se a API recusar. Sem login, leva para a tela de entrar e depois volta. */
   const toggleFavorite = useCallback(
     (book: BookSummary) => {
-      setFavoriteIds((prev) => {
-        const next = new Set(prev);
-        if (next.has(book.id)) {
-          next.delete(book.id);
-          notify('Removido dos favoritos.');
-        } else {
-          next.add(book.id);
-          notify('Adicionado aos favoritos.');
-        }
-        return next;
-      });
+      if (!user) {
+        notify('Entre na sua conta para salvar favoritos.');
+        navigate('/entrar', { state: { from: location.pathname + location.search } });
+        return;
+      }
+      const adding = !favoriteIds.has(book.id);
+      const apply = (add: boolean) =>
+        setFavoriteIds((prev) => {
+          const next = new Set(prev);
+          if (add) next.add(book.id);
+          else next.delete(book.id);
+          return next;
+        });
+
+      apply(adding);
+      (adding ? favoriteService.add(book.id) : favoriteService.remove(book.id))
+        .then(() => notify(adding ? 'Adicionado aos favoritos.' : 'Removido dos favoritos.'))
+        .catch(() => {
+          apply(!adding);
+          notify('Não foi possível atualizar os favoritos. Tente novamente.');
+        });
     },
-    [notify],
+    [user, favoriteIds, notify, navigate, location.pathname, location.search],
   );
 
   const cartCount = cartItems.reduce((sum, i) => sum + i.quantity, 0);
@@ -130,6 +171,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       discount,
       cartTotal,
       favoriteIds,
+      favoritesReady,
       addToCart,
       removeFromCart,
       setQuantity,
@@ -138,8 +180,8 @@ export function ShopProvider({ children }: { children: ReactNode }) {
       removeCoupon,
       toggleFavorite,
     }),
-    [cartItems, cartCount, cartSubtotal, coupon, discount, cartTotal, favoriteIds, addToCart, removeFromCart,
-      setQuantity, clearCart, applyCoupon, removeCoupon, toggleFavorite],
+    [cartItems, cartCount, cartSubtotal, coupon, discount, cartTotal, favoriteIds, favoritesReady, addToCart,
+      removeFromCart, setQuantity, clearCart, applyCoupon, removeCoupon, toggleFavorite],
   );
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 }

@@ -13,6 +13,9 @@ Erros seguem o formato `{ timestamp, status, error, message, path, details[] }`.
 | Banners | GET | `/api/banners` | público | 200 `Banner[]` | |
 | Autores | GET | `/api/authors` | público | 200 `Author[]` | |
 | Importar catálogo | POST | `/api/admin/catalog/import` | ADMIN | 200 `CatalogImportReport` | 401, 403, 502 |
+| Favoritos (lista) | GET | `/api/favorites` | autenticado | 200 `BookSummary[]` (mais recentes primeiro) | 401 |
+| Favoritar | PUT | `/api/favorites/{bookId}` | autenticado | 204 (idempotente) | 401, 404 |
+| Desfavoritar | DELETE | `/api/favorites/{bookId}` | autenticado | 204 (idempotente) | 401 |
 
 ## Parâmetros de `GET /api/books`
 `title`, `categoryId`, `minPrice`, `maxPrice`, `available`, `release`, `page` (0), `size` (12, máx. 50),
@@ -36,4 +39,4 @@ Os livros vêm da API pública do [Open Library](https://openlibrary.org/dev/doc
 - `CatalogImportReport`: `{ created, updated, notFound[] }`.
 
 ## Próximos (Etapas 3 e 4)
-CRUD admin de livros/categorias/autores/banners, `/api/favorites`, `/api/cart`, `/api/orders`.
+CRUD admin de livros/categorias/autores/banners, `/api/cart`, `/api/orders`.
