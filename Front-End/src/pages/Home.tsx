@@ -8,7 +8,8 @@ export function Home() {
       <BookSection
         title="Últimos lançamentos"
         query={{ release: true, sort: 'newest', size: 8 }}
-        viewAllTo="/livros?lancamentos=true"
+        // a vitrine já mostra todos os lançamentos; "Ver todos" abre o catálogo completo
+        viewAllTo="/livros"
       />
       {/* Próximas seções (mais vendidos, ofertas, recomendados) entram aqui como novos <BookSection /> */}
     </>
