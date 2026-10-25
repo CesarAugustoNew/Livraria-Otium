@@ -15,7 +15,9 @@ export function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -25,6 +27,10 @@ export function Register() {
 
     if (password.length < MIN_PASSWORD_LENGTH) {
       setError(`A senha deve ter pelo menos ${MIN_PASSWORD_LENGTH} caracteres.`);
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem. Digite a mesma senha nos dois campos.');
       return;
     }
 
@@ -93,6 +99,27 @@ export function Register() {
             aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
           >
             {showPassword ? <EyeOffIcon width={20} height={20} /> : <EyeIcon width={20} height={20} />}
+          </button>
+        </label>
+
+        <label className="field field--password">
+          <span className="sr-only">Confirme a senha</span>
+          <input
+            type={showConfirm ? 'text' : 'password'}
+            required
+            autoComplete="new-password"
+            placeholder="Confirme a senha"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            aria-invalid={confirmPassword.length > 0 && confirmPassword !== password}
+          />
+          <button
+            type="button"
+            className="field__toggle"
+            onClick={() => setShowConfirm((v) => !v)}
+            aria-label={showConfirm ? 'Ocultar confirmação de senha' : 'Mostrar confirmação de senha'}
+          >
+            {showConfirm ? <EyeOffIcon width={20} height={20} /> : <EyeIcon width={20} height={20} />}
           </button>
         </label>
 
